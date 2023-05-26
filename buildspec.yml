@@ -1,9 +1,26 @@
+# version: 0.2
+# phases:
+#   install: 
+#     commands:
+#       - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2 &
+#       - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+#   pre_build:
+#     commands:
+#       - echo Logging in to Amazon ECR...
+#       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 798092881332.dkr.ecr.ap-south-1.amazonaws.com/terraform_img:latest
+#   build:
+#     commands:
+#       - echo Building the Terraform environment...
+#       - docker pull 798092881332.dkr.ecr.ap-south-1.amazonaws.com/terraform_img:latest
+#       - pwd
+#       - docker run --rm 798092881332.dkr.ecr.ap-south-1.amazonaws.com/terraform_img:latest terraform init
+#       - docker run --rm 798092881332.dkr.ecr.ap-south-1.amazonaws.com/terraform_img:latest terraform plan
+#   post_build:
+#     commands:
+#       - echo Deploying the Terraform resources...
 version: 0.2
+
 phases:
-  install: 
-    commands:
-      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2 &
-      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
@@ -11,11 +28,11 @@ phases:
   build:
     commands:
       - echo Building the Terraform environment...
-      - docker pull 798092881332.dkr.ecr.ap-south-1.amazonaws.com/terraform_img:latest
       - pwd
-      - docker run --rm 798092881332.dkr.ecr.ap-south-1.amazonaws.com/terraform_img:latest terraform init
-      - docker run --rm 798092881332.dkr.ecr.ap-south-1.amazonaws.com/terraform_img:latest terraform plan
+      - terraform init
+      - terraform plan
   post_build:
     commands:
       - echo Deploying the Terraform resources...
+
      
