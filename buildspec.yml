@@ -1,0 +1,19 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      docker: 19
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 798092881332.dkr.ecr.ap-south-1.amazonaws.com/terraform_img:latest
+  build:
+    commands:
+      - echo Building the Terraform environment...
+      - docker pull 798092881332.dkr.ecr.ap-south-1.amazonaws.com/terraform_img:latest
+      - docker run --rm 798092881332.dkr.ecr.ap-south-1.amazonaws.com/terraform_img:latest terraform init
+      - docker run --rm 798092881332.dkr.ecr.ap-south-1.amazonaws.com/terraform_img:latest terraform plan -out=tfplan
+  post_build:
+    commands:
+      - echo Deploying the Terraform resources...
+     
