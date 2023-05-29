@@ -58,7 +58,8 @@ phases:
   build:
     commands:
       - echo Building the Terraform environment...
-      - docker run --rm -v $(pwd):/workspace -w /workspace hashicorp/terraform:1.0.9 init -backend-config="access_key=jsondecode(file("aws_credentials.json"))["Access_Key"]" -backend-config="secret_key=jsondecode(file("aws_credentials.json"))["Secret_Access_Key"]"
+      - docker run --rm -v $(pwd):/workspace -w /workspace hashicorp/terraform:1.0.9 init -backend-config="access_key=$(jq -r '.Acess_Key' aws_credentials.json)" -backend-config="secret_key=$(jq -r '.Secret_Access_Key' aws_credentials.json)"
+
       - docker run --rm -v $(pwd):/workspace -w /workspace hashicorp/terraform:1.0.9 plan
 
   post_build:
