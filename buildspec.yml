@@ -51,11 +51,10 @@ version: 0.2
 phases:
   pre_build:
     commands:
-    - echo "Setting AWS credentials..."
-    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-    - aws configure set aws_session_token $AWS_SESSION_TOKEN
-    - aws configure set aws_default_region $AWS_REGION
+      - echo "Retrieving AWS credentials..."
+      - aws secretsmanager get-secret-value --secret-id IAM_Creds --query SecretString --output text > aws_credentials.json
+      - aws configure set aws_access_key_id $(jq -r '.Access_Key' aws_credentials.json)
+      - aws configure set aws_secret_access_key $(jq -r '.Secret_Access_Key' aws_credentials.json)
   build:
     commands:
       - echo Building the Terraform environment...
@@ -65,7 +64,7 @@ phases:
   post_build:
     commands:
       - echo Deploying the Terraform resources...
-      - docker run --rm -v $(pwd):/workspace -w /workspace hashicorp/terraform:1.0.9 apply -auto-approve
+      
 
 
      
