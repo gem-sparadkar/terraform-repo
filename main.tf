@@ -50,10 +50,3 @@ resource "aws_s3_bucket" "test" {
   }
 }
 
-resource "aws_s3_bucket" "test" {
-  bucket = "my-test-s3-terraform-bucket"
-  acl = "private"
-  versioning {
-    enabled = true
-  }
-}
