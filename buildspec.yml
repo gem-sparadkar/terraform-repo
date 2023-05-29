@@ -58,7 +58,7 @@ phases:
   build:
     commands:
       - echo Building the Terraform environment...
-      - docker run --rm -v $(pwd):/workspace -w /workspace hashicorp/terraform:1.0.9 init
+      - docker run --rm -v $(pwd):/workspace -w /workspace hashicorp/terraform:1.0.9 init -backend-config="access_key" -backend-config="secret_key"
       - docker run --rm -v $(pwd):/workspace -w /workspace hashicorp/terraform:1.0.9 plan
 
   post_build:
