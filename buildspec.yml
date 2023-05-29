@@ -52,6 +52,7 @@ phases:
   pre_build:
     commands:
       - echo "Retrieving AWS credentials..."
+      - aws sts get-caller-identity
       - aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:ap-south-1:798092881332:secret:IAM_Creds-qcxfY0 --query SecretString --output text > aws_credentials.json
 #       - aws configure set aws_access_key_id $(jq -r '.Access_Key' aws_credentials.json)
 #       - aws configure set aws_secret_access_key $(jq -r '.Secret_Access_Key' aws_credentials.json)
