@@ -43,7 +43,7 @@ provider "aws" {
 # }
 resource "aws_s3_bucket" "test" {
   bucket = "my-test-s3-terraform-bucket"
-  region = "ap-south-1"
+ 
   acl = "private"
   versioning {
     enabled = true
