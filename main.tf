@@ -4,7 +4,7 @@
 provider "aws" {
   access_key = jsondecode(file("aws_credentials.json"))["accessKeyId"]
   secret_key = jsondecode(file("aws_credentials.json"))["secretAccessKey"]
-  region     = ap-south-1
+  region     = var.aws_region
 }
 
 resource "aws_s3_bucket" "test" {
