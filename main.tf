@@ -2,8 +2,8 @@
 #   region = "ap-south-1"
 # }
 provider "aws" {
-  access_key = jsondecode(file("aws_credentials.json"))["accessKeyId"]
-  secret_key = jsondecode(file("aws_credentials.json"))["secretAccessKey"]
+  access_key = jsondecode(file("aws_credentials.json"))["Access_Key"]
+  secret_key = jsondecode(file("aws_credentials.json"))["Secret_Access_Key"]
   region     = jsondecode(file("aws_credentials.json"))["Region"]
 }
 
