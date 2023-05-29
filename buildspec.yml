@@ -49,12 +49,12 @@
 version: 0.2
 
 phases:
-  pre_build:
-    commands:
-      - echo "Retrieving AWS credentials..."
-      - aws secretsmanager get-secret-value --secret-id IAM_Creds --query SecretString --output text > aws_credentials.json
-      - aws configure set aws_access_key_id $(jq -r '.Access_Key' aws_credentials.json)
-      - aws configure set aws_secret_access_key $(jq -r '.Secret_Access_Key' aws_credentials.json)
+#   pre_build:
+#     commands:
+#       - echo "Retrieving AWS credentials..."
+#       - aws secretsmanager get-secret-value --secret-id IAM_Creds --query SecretString --output text > aws_credentials.json
+#       - aws configure set aws_access_key_id $(jq -r '.Access_Key' aws_credentials.json)
+#       - aws configure set aws_secret_access_key $(jq -r '.Secret_Access_Key' aws_credentials.json)
   build:
     commands:
       - echo Building the Terraform environment...
