@@ -12,7 +12,7 @@ backend "s3" {
   region = "ap-south-1" 
   dynamodb_table = "terraform-state-locking-db" 
   key = "terraform.tfstate" 
-  bucket = "terraform-statefile-store" 
+  bucket = "terraform-statefile-store-worknowplease01" 
   skip_credentials_validation = true
   } 
 
@@ -21,7 +21,7 @@ backend "s3" {
 #.... s3 bucket for terraform state
 
 resource "aws_s3_bucket" "tf_remote_statefile" {
-  bucket = "terraform-statefile-store"
+  bucket = "terraform-statefile-store-worknowplease01"
   region= "ap-south-1"
   acl= "private"
   versioning {
