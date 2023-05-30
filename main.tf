@@ -12,7 +12,7 @@ terraform {
 }
 provider "aws" {
   assume_role {
-    role_arn     = "arn:aws:iam::798092881332:policy/service-role/AWSCodePipelineServiceRole-ap-south-1-terraform_pipeline"
+    role_arn     = "arn:aws:iam::798092881332:role/service-role/AWSCodePipelineServiceRole-ap-south-1-terraform_pipeline"
   }
   region = "ap-south-1"
 }
