@@ -12,6 +12,7 @@ terraform {
 }
 provider "aws" {
   region     = "ap-south-1"
+  profile = "default"
 }
 # terraform { 
 # required_version= ">=0.13" 
