@@ -10,9 +10,9 @@ terraform {
 required_version= ">=0.13" 
 backend "s3" { 
   region = "ap-south-1" 
-  dynamodb_table = "statefiletable" 
+  dynamodb_table = "lockid-table" 
   key = "terraform.tfstate" 
-  bucket = "newstatefile" 
+  bucket = "tfstatefile-store" 
   skip_credentials_validation = true
   } 
 
