@@ -10,42 +10,16 @@ terraform {
 required_version= ">=0.13" 
 backend "s3" { 
   region = "ap-south-1" 
-  dynamodb_table = "terraform-state-locking-db" 
+  dynamodb_table = "statefiletable" 
   key = "terraform.tfstate" 
-  bucket = "terraform-statefile-store-worknowplease01" 
+  bucket = "newstatefile" 
   skip_credentials_validation = true
   } 
 
 } 
 
-#.... s3 bucket for terraform state
-
-resource "aws_s3_bucket" "tf_remote_statefile" {
-  bucket = "terraform-statefile-store-worknowplease01"
-  region= "ap-south-1"
-  acl= "private"
-  versioning {
-    enabled = true
-  }
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
-#.... DynamoDB for locking the state file
-
-resource "aws_dynamodb_table" "tf_state_locking" {
-  hash_key = "LockID"
-  name     = "terraform-state-locking-db"
-  attribute {
-    name = "LockID"
-    type = "S"
-  }
-  billing_mode = "PAY_PER_REQUEST"
-}
 resource "aws_s3_bucket" "test" {
   bucket = "my-test-s3-terraform-bucket-new"
- 
   acl = "private"
   versioning {
     enabled = true
