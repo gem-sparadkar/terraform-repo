@@ -8,6 +8,7 @@ backend "s3" {
   dynamodb_table = "terraform-state-locking-db" 
   key = "terraform.tfstate" 
   bucket = "terraform-statefile-store" 
+  skip_credentials_validation = true
   } 
 
 } 
