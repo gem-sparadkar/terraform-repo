@@ -10,7 +10,7 @@
 #   }
 # }
 provider "aws" {
-  version= "3.7.1"
+  version = "3.57.0"
   assume_role {
     role_arn     = "arn:aws:iam::798092881332:role/service-role/AWSCodePipelineServiceRole-ap-south-1-terraform_pipeline"
   }
