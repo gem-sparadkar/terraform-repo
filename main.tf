@@ -1,16 +1,19 @@
-# provider "aws:3.7.1" {
-#   region = "ap-south-1"
-# }
-# terraform {
-#   required_providers {
-#     aws = {
-#       source  = "hashicorp/aws"
-#       version = "3.7.1"
-#     }
-#   }
-# }
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "3.7.1"
+    }
+  backend "s3" { 
+    region = "ap-south-1" 
+    dynamodb_table = "lockid-table" 
+    key = "terraform.tfstate" 
+    bucket = "tfstatefile-store" 
+    skip_credentials_validation = true
+  } 
+  }
+}
 provider "aws" {
-  version = "3.57.0"
   shared_credentials_file = "C:\\Users\\sakshi.paradkar\\.aws\\credentials"
   profile                  = "default"
   assume_role {
