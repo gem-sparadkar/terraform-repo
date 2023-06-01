@@ -11,7 +11,7 @@
 # }
 provider "aws" {
   version = "3.57.0"
-  shared_credentials_files = "C:\Users\sakshi.paradkar\.aws\credentials"
+  shared_credentials_files = "C:\\Users\\sakshi.paradkar\\.aws\\credentials"
   profile                  = "default"
   assume_role {
     role_arn     = "arn:aws:sts::798092881332:assumed-role/codebuild-terraform_build-service-role/AWSCodeBuild-1605a7bf-c7a0-4d13-8b8c-7f7ff7c2ce5c"
