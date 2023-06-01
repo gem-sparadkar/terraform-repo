@@ -4,13 +4,13 @@ terraform {
       source  = "hashicorp/aws"
       version = "3.7.1"
     }
-  backend "s3" { 
-    region = "ap-south-1" 
-    dynamodb_table = "lockid-table" 
-    key = "terraform.tfstate" 
-    bucket = "tfstatefile-store" 
-    skip_credentials_validation = true
-  } 
+#   backend "s3" { 
+#     region = "ap-south-1" 
+#     dynamodb_table = "lockid-table" 
+#     key = "terraform.tfstate" 
+#     bucket = "tfstatefile-store" 
+#     skip_credentials_validation = true
+#   } 
   }
 }
 provider "aws" {
